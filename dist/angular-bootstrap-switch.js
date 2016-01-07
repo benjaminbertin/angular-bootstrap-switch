@@ -1,6 +1,6 @@
 /**
  * angular-bootstrap-switch
- * @version v0.4.1 - 2015-06-15
+ * @version v0.4.1 - 2016-01-07
  * @author Francesco Pontillo (francescopontillo@gmail.com)
  * @link https://github.com/frapontillo/angular-bootstrap-switch
  * @license Apache License 2.0(http://www.apache.org/licenses/LICENSE-2.0.html)
@@ -117,7 +117,12 @@ angular.module('frapontillo.bootstrap-switch').directive('bsSwitch', [
         var initMaybe = function () {
           // if it's the first initialization
           if (!isInit) {
-            var viewValue = controller.$modelValue === getTrueValue();
+            var viewValue;
+            if (angular.isUndefined(controller.$modelValue)) {
+              viewValue = undefined;
+            } else {
+              viewValue = controller.$modelValue === getTrueValue();
+            }
             isInit = !isInit;
             // Bootstrap the switch plugin
             element.bootstrapSwitch({

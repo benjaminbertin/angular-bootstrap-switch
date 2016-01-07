@@ -110,7 +110,13 @@ angular.module('frapontillo.bootstrap-switch')
         var initMaybe = function() {
           // if it's the first initialization
           if (!isInit) {
-            var viewValue = (controller.$modelValue === getTrueValue());
+            var viewValue;
+            if (angular.isUndefined(controller.$modelValue)) {
+              viewValue = undefined;
+            }
+            else {
+              viewValue = controller.$modelValue === getTrueValue();
+            }
             isInit = !isInit;
             // Bootstrap the switch plugin
             element.bootstrapSwitch({
