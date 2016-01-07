@@ -142,6 +142,9 @@ angular.module('frapontillo.bootstrap-switch').directive('bsSwitch', [
               inverse: getSwitchAttrValue('switchInverse'),
               readonly: getSwitchAttrValue('switchReadonly')
             });
+            if (angular.isUndefined(controller.$modelValue)) {
+              element.data('bootstrap-switch').options.state = null;
+            }
             if (attrs.type === 'radio') {
               controller.$setViewValue(controller.$modelValue);
             } else {
